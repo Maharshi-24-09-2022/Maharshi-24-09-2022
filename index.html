@@ -10,11 +10,10 @@
       font-family: 'Segoe UI', sans-serif;
       overflow: hidden;
 
-      /* DENSE TEXT WALLPAPER BACKGROUND */
+      /* TEXT WALLPAPER BACKGROUND */
       background-color: #fde7f3;
       background-image: url("data:image/svg+xml;utf8,\
 <svg xmlns='http://www.w3.org/2000/svg' width='240' height='120'>\
-<rect width='100%' height='100%' fill='none'/>\
 <text x='10' y='30' font-size='18' fill='%23be123c' fill-opacity='0.45'>Manash ❤️ Harshita</text>\
 <text x='10' y='60' font-size='18' fill='%23be123c' fill-opacity='0.45'>Manash ❤️ Harshita</text>\
 <text x='10' y='90' font-size='18' fill='%23be123c' fill-opacity='0.45'>Manash ❤️ Harshita</text>\
@@ -42,6 +41,7 @@
     h1 {
       color: #9d174d;
       font-size: 32px;
+      margin-bottom: 10px;
     }
 
     p {
@@ -68,12 +68,13 @@
     }
 
     #result {
-      margin-top: 30px;
+      margin-top: 25px;
       font-size: 23px;
       color: #166534;
       font-weight: bold;
     }
 
+    /* HEARTS */
     .heart {
       position: fixed;
       bottom: -20px;
@@ -83,9 +84,27 @@
       z-index: 1;
     }
 
+    /* I LOVE YOU TEXT */
+    .love-text {
+      position: fixed;
+      bottom: -30px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #be123c;
+      animation: floatUpText 6s linear infinite;
+      opacity: 0.9;
+      z-index: 1;
+      text-shadow: 0 0 6px rgba(255, 182, 193, 0.9);
+    }
+
     @keyframes floatUp {
       from { transform: translateY(0); opacity: 1; }
       to { transform: translateY(-130vh); opacity: 0; }
+    }
+
+    @keyframes floatUpText {
+      from { transform: translateY(0); opacity: 1; }
+      to { transform: translateY(-120vh); opacity: 0; }
     }
 
     @keyframes fadeIn {
@@ -98,14 +117,16 @@
 <body>
 
 <!-- MUSIC -->
-<audio id="bgm" loop muted>
+<audio id="bgm" loop >
   <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_7e0f8c7b1f.mp3" type="audio/mpeg">
 </audio>
 
 <div class="card">
   <h1>Happy Propose Day ❤️</h1>
   <p>Harshita, will you be my forever?</p>
+
   <button onclick="acceptLove()">YES 💖</button>
+
   <div id="result"></div>
 </div>
 
@@ -121,6 +142,10 @@ function acceptLove() {
   for (let i = 0; i < 50; i++) {
     createHeart();
   }
+
+  for (let i = 0; i < 20; i++) {
+    createLoveText();
+  }
 }
 
 function createHeart() {
@@ -132,6 +157,17 @@ function createHeart() {
   heart.style.animationDuration = (4 + Math.random() * 4) + "s";
   document.body.appendChild(heart);
   setTimeout(() => heart.remove(), 7000);
+}
+
+function createLoveText() {
+  const text = document.createElement("div");
+  text.className = "love-text";
+  text.innerHTML = "I Love You 💖";
+  text.style.left = Math.random() * 100 + "vw";
+  text.style.fontSize = (18 + Math.random() * 14) + "px";
+  text.style.animationDuration = (4 + Math.random() * 3) + "s";
+  document.body.appendChild(text);
+  setTimeout(() => text.remove(), 6000);
 }
 </script>
 
