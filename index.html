@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>Happy Propose Day ❤️</title>
+
   <style>
     body {
       margin: 0;
@@ -20,6 +21,7 @@
       height: 120%;
       background: radial-gradient(circle, rgba(255,255,255,0.25), transparent 70%);
       animation: glowMove 8s infinite alternate;
+      z-index: 0;
     }
 
     @keyframes glowMove {
@@ -100,13 +102,14 @@
 
 <div class="glow"></div>
 
-<audio id="bgm" loop>
+<!-- MUSIC (muted first to satisfy browser rules) -->
+<audio id="bgm" loop muted>
   <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_7e0f8c7b1f.mp3" type="audio/mpeg">
 </audio>
 
 <div class="card">
   <h1>Happy Propose Day ❤️</h1>
-  <p>Harshita, will you be my forever?</p>
+  <p>HER_NAME, will you be my forever?</p>
 
   <button onclick="acceptLove()">YES 💖</button>
 
@@ -115,9 +118,12 @@
 
 <script>
 function acceptLove() {
+  const music = document.getElementById("bgm");
+  music.muted = false;
+  music.play().catch(() => {});
+
   document.getElementById("result").innerHTML =
     "💖 Accepted 💖<br>My heart chose you… always 😌";
-  document.getElementById("bgm").play();
 
   for (let i = 0; i < 45; i++) {
     createHeart();
