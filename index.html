@@ -1,82 +1,118 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>For You ❤️</title>
-
+  <title>Happy Propose Day ❤️</title>
   <style>
     body {
-      background-color: #1e1e1e;
-      color: #d4d4d4;
-      font-family: Consolas, monospace;
-      padding: 40px;
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
     }
 
-    .keyword { color: #569cd6; }
-    .string  { color: #ce9178; }
-    .comment { color: #6a9955; }
+    .card {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+      max-width: 360px;
+      z-index: 2;
+    }
+
+    h1 {
+      color: #e11d48;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 18px;
+      margin-bottom: 25px;
+    }
 
     button {
-      background: #0e639c;
+      background: #e11d48;
       color: white;
       border: none;
-      padding: 12px 24px;
-      font-size: 16px;
-      border-radius: 6px;
+      padding: 14px 30px;
+      font-size: 18px;
+      border-radius: 30px;
       cursor: pointer;
-      margin-top: 25px;
+      animation: bounce 1.5s infinite;
     }
 
     button:hover {
-      background: #1177bb;
+      background: #be123c;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
     }
 
     #result {
       margin-top: 25px;
-      font-size: 18px;
-      color: #4ec9b0;
+      font-size: 20px;
+      color: #16a34a;
+      font-weight: bold;
+    }
+
+    .heart {
+      position: fixed;
+      bottom: -20px;
+      color: #e11d48;
+      font-size: 20px;
+      animation: floatUp 5s linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-110vh); opacity: 0; }
     }
   </style>
 </head>
 
 <body>
 
-<pre id="code"></pre>
+<audio id="bgm" loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
 
-<button onclick="sayYes()">YES ❤️</button>
+<div class="card">
+  <h1>Happy Propose Day ❤️</h1>
+  <p>HARSHITA, will you be my forever?</p>
 
-<div id="result"></div>
+  <button onclick="acceptLove()">YES 💖</button>
+
+  <div id="result"></div>
+</div>
 
 <script>
-const codeText = `
-<span class="comment">// Happy Propose Day ❤️</span>
+function acceptLove() {
+  document.getElementById("result").innerHTML =
+    "💖 Accepted 💖<br>Forever starts now 😌";
+  document.getElementById("bgm").play();
 
-<span class="keyword">#include</span> &lt;iostream&gt;
-<span class="keyword">using</span> namespace std;
-
-<span class="keyword">int</span> main() {
-
-    string name = <span class="string">"HARSHITA_GUPTA"</span>;
-
-    cout << <span class="string">"You are my constant, "</span> << name << endl;
-    cout << <span class="string">"Will you be my forever? 💍"</span> << endl;
-
-    <span class="keyword">return</span> 0;
-}
-`;
-
-let i = 0;
-function typeWriter() {
-  if (i < codeText.length) {
-    document.getElementById("code").innerHTML += codeText.charAt(i);
-    i++;
-    setTimeout(typeWriter, 30);
+  for (let i = 0; i < 30; i++) {
+    createHeart();
   }
 }
-typeWriter();
 
-function sayYes() {
-  document.getElementById("result").innerHTML =
-    "💖 YES accepted 💖<br>Relationship deployed successfully.<br>No rollback. Forever mode ON 😌";
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "❤️";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = (16 + Math.random() * 20) + "px";
+  heart.style.animationDuration = (3 + Math.random() * 3) + "s";
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 5000);
 }
 </script>
 
