@@ -5,145 +5,283 @@
 <title>Happy Propose Day ❤️</title>
 
 <style>
-html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    overflow: hidden;
-    font-family: 'Segoe UI', sans-serif;
-}
-
-/* Romantic background */
 body {
-    background: linear-gradient(135deg, #ff758c, #ff7eb3);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  margin: 0;
+  overflow: hidden;
+  font-family: 'Segoe UI', sans-serif;
+  background: radial-gradient(circle at top, #ff9a9e, #2b1055);
+  color: white;
+  text-align: center;
 }
 
-/* Repeating background text */
-.background-text {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 200%;
-    height: 200%;
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    grid-auto-rows: 80px;
-    transform: rotate(-15deg);
-    opacity: 0.15;
-    pointer-events: none;
+/* BACKGROUND NAMES */
+.bg-names {
+  position: fixed;
+  inset: 0;
+  font-size: 26px;
+  opacity: 0.18;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  pointer-events: none;
+}
+.bg-names div {
+  transform: rotate(-20deg);
+  color: #ffd1dc;
 }
 
-.background-text span {
-    font-size: 30px;
-    color: #fff;
-    text-align: center;
-}
-
-/* Proposal box */
+/* MAIN */
 .container {
-    background: rgba(255,255,255,0.2);
-    padding: 40px;
-    border-radius: 20px;
-    text-align: center;
-    color: #fff;
-    backdrop-filter: blur(10px);
-    z-index: 10;
+  position: relative;
+  z-index: 2;
+  margin-top: 22vh;
+}
+
+/* GLOW NAME */
+.glow {
+  animation: glow 2.5s infinite alternate;
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 10px pink; }
+  to { text-shadow: 0 0 30px #ffb6c1; }
 }
 
 h1 {
-    margin-bottom: 20px;
+  font-size: 42px;
+  margin-bottom: 15px;
 }
 
 button {
-    padding: 12px 30px;
-    margin: 10px;
-    border: none;
-    border-radius: 25px;
-    font-size: 18px;
-    cursor: pointer;
+  font-size: 22px;
+  padding: 14px 32px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  margin: 10px;
 }
 
-#yes {
-    background: #ff2e63;
-    color: white;
+#yesBtn {
+  background: #ff2e63;
+  color: white;
 }
 
-#no {
-    background: #555;
-    color: white;
+#musicBtn {
+  background: rgba(255,255,255,0.25);
+  color: white;
 }
 
-/* Flying hearts & text */
-.floating {
-    position: absolute;
-    bottom: -30px;
-    font-size: 28px;
-    animation: floatUp 5s linear forwards;
-    pointer-events: none;
+/* HEARTS */
+.heart {
+  position: fixed;
+  bottom: -20px;
+  font-size: 24px;
+  animation: floatUp 5s linear forwards;
 }
 
 @keyframes floatUp {
-    0% {
-        transform: translateY(0);
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(-120vh);
-        opacity: 0;
-    }
+  to { transform: translateY(-120vh) scale(1.5); opacity: 0; }
+}
+
+/* LOVE TEXT */
+.love-text {
+  position: fixed;
+  bottom: -30px;
+  font-weight: bold;
+  animation: floatText 6s linear forwards;
+  text-shadow: 0 0 10px pink;
+}
+
+@keyframes floatText {
+  to { transform: translateY(-120vh); opacity: 0; }
+}
+
+/* RING */
+#ring {
+  font-size: 72px;
+  margin-top: 20px;
+  animation: ringPop 2s infinite alternate;
+}
+
+@keyframes ringPop {
+  from { transform: scale(1); }
+  to { transform: scale(1.25); }
+}
+
+/* LETTER */
+#letter {
+  margin: 30px auto;
+  max-width: 640px;
+  font-size: 20px;
+  line-height: 1.7;
+  white-space: pre-line;
+}
+
+/* FIREWORK */
+.firework {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: gold;
+  animation: explode 1.5s ease-out forwards;
+}
+
+@keyframes explode {
+  to {
+    transform: translate(var(--x), var(--y));
+    opacity: 0;
+  }
+}
+
+/* END SCREEN */
+#end {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.8);
+  z-index: 5;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+#end h1 {
+  font-size: 50px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- Background names -->
-<div class="background-text" id="bg"></div>
+<div class="bg-names" id="bg"></div>
 
-<!-- Main content -->
-<div class="container" id="box">
-    <h1>Happy Propose Day ❤️</h1>
-    <p>Will you be mine forever?</p>
-    <button id="yes">Yes 💖</button>
-    <button id="no">No 🙈</button>
+<audio id="bgMusic" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container">
+  <h1 id="message" class="glow">Harshita ❤️<br>Will you be mine forever?</h1>
+  <button id="yesBtn" onclick="acceptLove()">YES 💖</button>
+  <br><br>
+  <button id="musicBtn" onclick="toggleMusic()">🎵 Play / Pause</button>
+  <div id="ring" style="display:none;">💍</div>
+  <div id="letter"></div>
+</div>
+
+<div id="end">
+  <h1 class="glow">Happy Propose Day<br>Harshita ❤️</h1>
+  <p>— Yours forever, Manash</p>
 </div>
 
 <script>
-// Fill background with names
+/* BACKGROUND */
 const bg = document.getElementById("bg");
-for (let i = 0; i < 200; i++) {
-    const span = document.createElement("span");
-    span.innerText = "Manash & Harshita";
-    bg.appendChild(span);
+for (let i = 0; i < 160; i++) {
+  const d = document.createElement("div");
+  d.innerText = "Manash ❤️ Harshita";
+  bg.appendChild(d);
 }
 
-// Yes button action
-document.getElementById("yes").onclick = () => {
-    document.getElementById("box").innerHTML =
-        "<h1>I knew it! 💘</h1><p>Forever us ❤️</p>";
+/* HEART */
+function createHeart() {
+  const h = document.createElement("div");
+  h.className = "heart";
+  h.innerHTML = "❤️";
+  h.style.left = Math.random()*100 + "vw";
+  h.style.fontSize = (20+Math.random()*22)+"px";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),5000);
+}
 
-    // Create hearts and I love you texts
-    setInterval(() => {
-        createFloating("❤️");
-        createFloating("I love you 💕");
-    }, 300);
-};
+/* LOVE TEXT */
+function createLoveText() {
+  const texts = ["I Love You 💖","Harshita 💕","Manash ❤️","Forever ♾️"];
+  const t = document.createElement("div");
+  t.className = "love-text";
+  t.innerText = texts[Math.floor(Math.random()*texts.length)];
+  t.style.left = Math.random()*100 + "vw";
+  t.style.fontSize = (18+Math.random()*16)+"px";
+  document.body.appendChild(t);
+  setTimeout(()=>t.remove(),6000);
+}
 
-// Floating creator
-function createFloating(text) {
-    const el = document.createElement("div");
-    el.className = "floating";
-    el.innerText = text;
-    el.style.left = Math.random() * 100 + "vw";
-    el.style.fontSize = Math.random() * 10 + 24 + "px";
-    el.style.color = "#fff";
+/* MUSIC FADE */
+function fadeInMusic(a){
+  a.volume=0; a.play();
+  let v=0;
+  const f=setInterval(()=>{
+    if(v<0.7){v+=0.02;a.volume=v;}
+    else clearInterval(f);
+  },200);
+}
 
-    document.body.appendChild(el);
+/* TYPE LETTER */
+function typeLetter(text){
+  let i=0;
+  const el=document.getElementById("letter");
+  el.innerHTML="";
+  const t=setInterval(()=>{
+    el.innerHTML+=text.charAt(i);
+    i++;
+    if(i>=text.length) clearInterval(t);
+  },55);
+}
 
-    setTimeout(() => el.remove(), 5000);
+/* FIREWORK */
+function firework(){
+  for(let i=0;i<40;i++){
+    const f=document.createElement("div");
+    f.className="firework";
+    f.style.left="50vw";
+    f.style.top="50vh";
+    f.style.setProperty("--x",(Math.random()*500-250)+"px");
+    f.style.setProperty("--y",(Math.random()*500-250)+"px");
+    document.body.appendChild(f);
+    setTimeout(()=>f.remove(),1500);
+  }
+}
+
+/* ACCEPT */
+let beat;
+function acceptLove(){
+  const music=document.getElementById("bgMusic");
+  fadeInMusic(music);
+
+  document.getElementById("message").innerHTML =
+    "She said YES 💖<br><span class='glow'>Manash & Harshita</span>";
+
+  document.getElementById("ring").style.display="block";
+
+  typeLetter(
+`Harshita,
+
+You are my calm in chaos,
+my smile on hard days,
+and my favorite thought every night.
+
+I don’t promise perfection,
+but I promise honesty, loyalty,
+and a love that grows stronger with time.
+
+Will you walk with me,
+not just today,
+but every tomorrow?
+
+— Manash ❤️`
+  );
+
+  beat=setInterval(()=>{
+    createHeart();
+    createLoveText();
+  },600);
+
+  setTimeout(firework,5000);
+  setTimeout(()=>document.getElementById("end").style.display="flex",9000);
+}
+
+/* MUSIC TOGGLE */
+function toggleMusic(){
+  const m=document.getElementById("bgMusic");
+  m.paused?m.play():m.pause();
 }
 </script>
 
