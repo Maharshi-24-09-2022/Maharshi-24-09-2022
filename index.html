@@ -1,173 +1,149 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Happy Propose Day ❤️</title>
+<meta charset="UTF-8">
+<title>Happy Propose Day ❤️</title>
 
-  <style>
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: 'Segoe UI', sans-serif;
-      overflow: hidden;
+<style>
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Segoe UI', sans-serif;
+}
 
-      /* TEXT WALLPAPER BACKGROUND */
-      background-color: #fde7f3;
-      background-image: url("data:image/svg+xml;utf8,\
-<svg xmlns='http://www.w3.org/2000/svg' width='240' height='120'>\
-<text x='10' y='30' font-size='18' fill='%23be123c' fill-opacity='0.45'>Manash ❤️ Harshita</text>\
-<text x='10' y='60' font-size='18' fill='%23be123c' fill-opacity='0.45'>Manash ❤️ Harshita</text>\
-<text x='10' y='90' font-size='18' fill='%23be123c' fill-opacity='0.45'>Manash ❤️ Harshita</text>\
-</svg>");
-      background-repeat: repeat;
-      background-size: 240px 120px;
+/* Romantic background */
+body {
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-      display: flex;
-      justify-content: center;
-      align-items: center;
+/* Repeating background text */
+.background-text {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-auto-rows: 80px;
+    transform: rotate(-15deg);
+    opacity: 0.15;
+    pointer-events: none;
+}
+
+.background-text span {
+    font-size: 30px;
+    color: #fff;
+    text-align: center;
+}
+
+/* Proposal box */
+.container {
+    background: rgba(255,255,255,0.2);
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    color: #fff;
+    backdrop-filter: blur(10px);
+    z-index: 10;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 12px 30px;
+    margin: 10px;
+    border: none;
+    border-radius: 25px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+#yes {
+    background: #ff2e63;
+    color: white;
+}
+
+#no {
+    background: #555;
+    color: white;
+}
+
+/* Flying hearts & text */
+.floating {
+    position: absolute;
+    bottom: -30px;
+    font-size: 28px;
+    animation: floatUp 5s linear forwards;
+    pointer-events: none;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
     }
-
-    .card {
-      backdrop-filter: blur(18px);
-      background: rgba(255, 255, 255, 0.55);
-      padding: 48px;
-      border-radius: 30px;
-      text-align: center;
-      box-shadow: 0 30px 60px rgba(0,0,0,0.25);
-      max-width: 420px;
-      z-index: 2;
-      animation: fadeIn 1.5s ease;
+    100% {
+        transform: translateY(-120vh);
+        opacity: 0;
     }
-
-    h1 {
-      color: #9d174d;
-      font-size: 32px;
-      margin-bottom: 10px;
-    }
-
-    p {
-      font-size: 20px;
-      margin-bottom: 30px;
-      color: #3f3f46;
-    }
-
-    button {
-      background: linear-gradient(135deg, #e11d48, #fb7185);
-      color: white;
-      border: none;
-      padding: 16px 38px;
-      font-size: 19px;
-      border-radius: 40px;
-      cursor: pointer;
-      animation: heartbeat 1.6s infinite;
-      box-shadow: 0 10px 25px rgba(225,29,72,0.45);
-    }
-
-    @keyframes heartbeat {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-    }
-
-    #result {
-      margin-top: 25px;
-      font-size: 23px;
-      color: #166534;
-      font-weight: bold;
-    }
-
-    /* HEARTS */
-    .heart {
-      position: fixed;
-      bottom: -20px;
-      font-size: 18px;
-      animation: floatUp 7s linear infinite;
-      opacity: 0.9;
-      z-index: 1;
-    }
-
-    /* I LOVE YOU TEXT */
-    .love-text {
-      position: fixed;
-      bottom: -30px;
-      font-size: 20px;
-      font-weight: bold;
-      color: #be123c;
-      animation: floatUpText 6s linear infinite;
-      opacity: 0.9;
-      z-index: 1;
-      text-shadow: 0 0 6px rgba(255, 182, 193, 0.9);
-    }
-
-    @keyframes floatUp {
-      from { transform: translateY(0); opacity: 1; }
-      to { transform: translateY(-130vh); opacity: 0; }
-    }
-
-    @keyframes floatUpText {
-      from { transform: translateY(0); opacity: 1; }
-      to { transform: translateY(-120vh); opacity: 0; }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  </style>
+}
+</style>
 </head>
 
 <body>
 
-<!-- MUSIC -->
-<audio id="bgm" loop >
-  <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_7e0f8c7b1f.mp3" type="audio/mpeg">
-</audio>
+<!-- Background names -->
+<div class="background-text" id="bg"></div>
 
-<div class="card">
-  <h1>Happy Propose Day ❤️</h1>
-  <p>Harshita, will you be my forever?</p>
-
-  <button onclick="acceptLove()">YES 💖</button>
-
-  <div id="result"></div>
+<!-- Main content -->
+<div class="container" id="box">
+    <h1>Happy Propose Day ❤️</h1>
+    <p>Will you be mine forever?</p>
+    <button id="yes">Yes 💖</button>
+    <button id="no">No 🙈</button>
 </div>
 
 <script>
-function acceptLove() {
-  const music = document.getElementById("bgm");
-  music.muted = false;
-  music.play().catch(() => {});
-
-  document.getElementById("result").innerHTML =
-    "💖 Accepted 💖<br>Manash & Harshita — forever 😌";
-
-  for (let i = 0; i < 50; i++) {
-    createHeart();
-  }
-
-  for (let i = 0; i < 20; i++) {
-    createLoveText();
-  }
+// Fill background with names
+const bg = document.getElementById("bg");
+for (let i = 0; i < 200; i++) {
+    const span = document.createElement("span");
+    span.innerText = "Manash & Harshita";
+    bg.appendChild(span);
 }
 
-function createHeart() {
-  const heart = document.createElement("div");
-  heart.className = "heart";
-  heart.innerHTML = "❤️";
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.fontSize = (16 + Math.random() * 24) + "px";
-  heart.style.animationDuration = (4 + Math.random() * 4) + "s";
-  document.body.appendChild(heart);
-  setTimeout(() => heart.remove(), 7000);
-}
+// Yes button action
+document.getElementById("yes").onclick = () => {
+    document.getElementById("box").innerHTML =
+        "<h1>I knew it! 💘</h1><p>Forever us ❤️</p>";
 
-function createLoveText() {
-  const text = document.createElement("div");
-  text.className = "love-text";
-  text.innerHTML = "I Love You 💖";
-  text.style.left = Math.random() * 100 + "vw";
-  text.style.fontSize = (18 + Math.random() * 14) + "px";
-  text.style.animationDuration = (4 + Math.random() * 3) + "s";
-  document.body.appendChild(text);
-  setTimeout(() => text.remove(), 6000);
+    // Create hearts and I love you texts
+    setInterval(() => {
+        createFloating("❤️");
+        createFloating("I love you 💕");
+    }, 300);
+};
+
+// Floating creator
+function createFloating(text) {
+    const el = document.createElement("div");
+    el.className = "floating";
+    el.innerText = text;
+    el.style.left = Math.random() * 100 + "vw";
+    el.style.fontSize = Math.random() * 10 + 24 + "px";
+    el.style.color = "#fff";
+
+    document.body.appendChild(el);
+
+    setTimeout(() => el.remove(), 5000);
 }
 </script>
 
