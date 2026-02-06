@@ -2,20 +2,83 @@
 <html>
 <head>
   <title>For You ❤️</title>
+
+  <style>
+    body {
+      background-color: #1e1e1e;
+      color: #d4d4d4;
+      font-family: Consolas, monospace;
+      padding: 40px;
+    }
+
+    .keyword { color: #569cd6; }
+    .string  { color: #ce9178; }
+    .comment { color: #6a9955; }
+
+    button {
+      background: #0e639c;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 25px;
+    }
+
+    button:hover {
+      background: #1177bb;
+    }
+
+    #result {
+      margin-top: 25px;
+      font-size: 18px;
+      color: #4ec9b0;
+    }
+  </style>
 </head>
-<body style="background:#020617;color:#e5e7eb;font-family:monospace;padding:40px;">
-<pre>
-#include <iostream>
-using namespace std;
 
-int main() {
-    cout << "Happy Propose Day ❤️" << endl;
-    cout << "You are my constant, not a variable." << endl;
-    cout << "Will you be my forever? 💍" << endl;
-    return 0;
+<body>
+
+<pre id="code"></pre>
+
+<button onclick="sayYes()">YES ❤️</button>
+
+<div id="result"></div>
+
+<script>
+const codeText = `
+<span class="comment">// Happy Propose Day ❤️</span>
+
+<span class="keyword">#include</span> &lt;iostream&gt;
+<span class="keyword">using</span> namespace std;
+
+<span class="keyword">int</span> main() {
+
+    string name = <span class="string">"HER_NAME"</span>;
+
+    cout << <span class="string">"You are my constant, "</span> << name << endl;
+    cout << <span class="string">"Will you be my forever? 💍"</span> << endl;
+
+    <span class="keyword">return</span> 0;
 }
-</pre>
+`;
 
-<p>No memory leaks. No segmentation faults. Just us ❤️</p>
+let i = 0;
+function typeWriter() {
+  if (i < codeText.length) {
+    document.getElementById("code").innerHTML += codeText.charAt(i);
+    i++;
+    setTimeout(typeWriter, 30);
+  }
+}
+typeWriter();
+
+function sayYes() {
+  document.getElementById("result").innerHTML =
+    "💖 YES accepted 💖<br>Relationship deployed successfully.<br>No rollback. Forever mode ON 😌";
+}
+</script>
+
 </body>
 </html>
