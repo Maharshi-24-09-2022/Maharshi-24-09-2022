@@ -6,47 +6,30 @@
   <style>
     body {
       margin: 0;
-      height: 100vh;
-      background: linear-gradient(135deg, #ffe4e6, #fbcfe8, #e9d5ff);
+      min-height: 100vh;
       font-family: 'Segoe UI', sans-serif;
       overflow: hidden;
+
+      /* DENSE TEXT WALLPAPER BACKGROUND */
+      background-color: #fde7f3;
+      background-image: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' width='240' height='120'>\
+<rect width='100%' height='100%' fill='none'/>\
+<text x='10' y='30' font-size='18' fill='%23be123c' fill-opacity='0.45'>Manash ❤️ Harshita</text>\
+<text x='10' y='60' font-size='18' fill='%23be123c' fill-opacity='0.45'>Manash ❤️ Harshita</text>\
+<text x='10' y='90' font-size='18' fill='%23be123c' fill-opacity='0.45'>Manash ❤️ Harshita</text>\
+</svg>");
+      background-repeat: repeat;
+      background-size: 240px 120px;
+
       display: flex;
       justify-content: center;
       align-items: center;
-    }
-
-    /* FULL BACKGROUND TEXT WALL */
-    .names-wall {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      grid-auto-rows: 60px;
-      transform: rotate(-20deg);
-      opacity: 0.55;
-      pointer-events: none;
-    }
-
-    .names-wall span {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 22px;
-      font-weight: 600;
-      color: #be123c; /* strong rose */
-      text-shadow: 0 0 8px rgba(255, 182, 193, 0.9);
-      animation: fadeFloat 6s ease-in-out infinite alternate;
-    }
-
-    @keyframes fadeFloat {
-      from { opacity: 0.4; }
-      to   { opacity: 0.9; }
     }
 
     .card {
-      backdrop-filter: blur(16px);
-      background: rgba(255, 255, 255, 0.45);
+      backdrop-filter: blur(18px);
+      background: rgba(255, 255, 255, 0.55);
       padding: 48px;
       border-radius: 30px;
       text-align: center;
@@ -97,19 +80,22 @@
       font-size: 18px;
       animation: floatUp 7s linear infinite;
       opacity: 0.9;
+      z-index: 1;
     }
 
     @keyframes floatUp {
       from { transform: translateY(0); opacity: 1; }
       to { transform: translateY(-130vh); opacity: 0; }
     }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
   </style>
 </head>
 
 <body>
-
-<!-- BACKGROUND NAMES WALL -->
-<div class="names-wall" id="wall"></div>
 
 <!-- MUSIC -->
 <audio id="bgm" loop muted>
@@ -124,16 +110,6 @@
 </div>
 
 <script>
-/* FILL ENTIRE SCREEN WITH NAMES */
-const wall = document.getElementById("wall");
-const count = 180; // enough to cover all screens
-
-for (let i = 0; i < count; i++) {
-  const span = document.createElement("span");
-  span.textContent = "Manash ❤️ Harshita";
-  wall.appendChild(span);
-}
-
 function acceptLove() {
   const music = document.getElementById("bgm");
   music.muted = false;
