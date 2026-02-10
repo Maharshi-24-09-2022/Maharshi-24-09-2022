@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Happy Promise Day ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 body {
@@ -18,10 +19,10 @@ body {
 .bg-names {
   position: fixed;
   inset: 0;
-  font-size: 26px;
-  opacity: 0.18;
+  font-size: 22px;
+  opacity: 0.15;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   pointer-events: none;
 }
 .bg-names div {
@@ -33,31 +34,31 @@ body {
 .container {
   position: relative;
   z-index: 2;
-  margin-top: 22vh;
+  margin-top: 18vh;
+  padding: 10px;
 }
 
-/* GLOW NAME */
+/* GLOW */
 .glow {
-  animation: glow 4.5s infinite alternate;
+  animation: glow 4s infinite alternate;
 }
-
 @keyframes glow {
-  from { text-shadow: 0 0 10px pink; }
-  to { text-shadow: 0 0 30px #ffb6c1; }
+  from { text-shadow: 0 0 8px pink; }
+  to { text-shadow: 0 0 28px #ffb6c1; }
 }
 
 h1 {
-  font-size: 42px;
+  font-size: clamp(28px, 5vw, 42px);
   margin-bottom: 15px;
 }
 
 button {
-  font-size: 22px;
-  padding: 14px 32px;
+  font-size: 20px;
+  padding: 14px 30px;
   border-radius: 30px;
   border: none;
   cursor: pointer;
-  margin: 10px;
+  margin: 8px;
 }
 
 #yesBtn {
@@ -70,50 +71,49 @@ button {
   color: white;
 }
 
-/* HEARTS */
-.heart {
-  position: fixed;
-  bottom: -20px;
-  font-size: 24px;
-  animation: floatUp 5s linear forwards;
-}
-
-@keyframes floatUp {
-  to { transform: translateY(-120vh) scale(1.5); opacity: 0; }
-}
-
-/* LOVE TEXT */
-.love-text {
+/* FLOATING HEARTS */
+.heart, .love-text {
   position: fixed;
   bottom: -30px;
-  font-weight: bold;
-  animation: floatText 6s linear forwards;
+  animation: floatUp 6s linear forwards;
   text-shadow: 0 0 10px pink;
 }
+@keyframes floatUp {
+  to { transform: translateY(-120vh) scale(1.4); opacity: 0; }
+}
 
-@keyframes floatText {
-  to { transform: translateY(-120vh); opacity: 0; }
+/* PROMISE BOOK */
+#book {
+  display: none;
+  max-width: 650px;
+  margin: 30px auto;
+  background: rgba(255,255,255,0.1);
+  padding: 25px;
+  border-radius: 18px;
+  box-shadow: 0 0 25px rgba(255,182,193,0.3);
+  animation: pageIn 1.5s ease;
+}
+@keyframes pageIn {
+  from { transform: rotateY(90deg); opacity: 0; }
+  to { transform: rotateY(0); opacity: 1; }
+}
+.page {
+  display: none;
+  font-size: clamp(16px, 4vw, 20px);
+  line-height: 1.7;
+}
+.page.active {
+  display: block;
 }
 
 /* RING */
 #ring {
-  font-size: 72px;
-  margin-top: 20px;
+  font-size: 68px;
+  margin-top: 15px;
   animation: ringPop 2s infinite alternate;
 }
-
 @keyframes ringPop {
-  from { transform: scale(1); }
   to { transform: scale(1.25); }
-}
-
-/* LETTER */
-#letter {
-  margin: 30px auto;
-  max-width: 640px;
-  font-size: 20px;
-  line-height: 1.7;
-  white-space: pre-line;
 }
 
 /* FIREWORK */
@@ -125,7 +125,6 @@ button {
   background: gold;
   animation: explode 1.5s ease-out forwards;
 }
-
 @keyframes explode {
   to {
     transform: translate(var(--x), var(--y));
@@ -133,19 +132,16 @@ button {
   }
 }
 
-/* END SCREEN */
+/* END */
 #end {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.8);
+  background: rgba(0,0,0,0.85);
   z-index: 5;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-}
-#end h1 {
-  font-size: 50px;
 }
 </style>
 </head>
@@ -163,54 +159,61 @@ button {
     Harshita ❤️<br>
     Will you accept my promises?
   </h1>
-  <button id="yesBtn" onclick="acceptLove()">I Promise 💖</button>
-  <br><br>
+
+  <button id="yesBtn" onclick="acceptLove()">I Promise 💖</button><br>
   <button id="musicBtn" onclick="toggleMusic()">🎵 Play / Pause</button>
-  <div id="ring" style="display:none;">🤞💍</div>
-  <div id="letter"></div>
+
+  <div id="ring" style="display:none;">💍</div>
+
+  <div id="book">
+    <div class="page active">
+      Harshita,<br><br>
+      I promise to choose you —  
+      not just when it’s easy,  
+      but especially when it’s hard.
+    </div>
+    <div class="page">
+      I promise patience in misunderstandings,  
+      honesty in silence,  
+      and loyalty even when no one is watching.
+    </div>
+    <div class="page">
+      I promise to protect your heart,  
+      respect your dreams,  
+      and stand beside you — always.
+    </div>
+    <div class="page">
+      No matter where life takes us,  
+      my promises stay the same.<br><br>
+      Forever yours,<br>
+      <b>Manash ❤️</b>
+    </div>
+  </div>
 </div>
 
 <div id="end">
   <h1 class="glow">Happy Promise Day<br>Harshita ❤️</h1>
-  <p>— Always yours, Manash</p>
+  <p>— With all my heart, Manash</p>
 </div>
 
 <script>
 /* BACKGROUND */
 const bg = document.getElementById("bg");
-for (let i = 0; i < 160; i++) {
+for (let i = 0; i < 150; i++) {
   const d = document.createElement("div");
   d.innerText = "Manash ❤️ Harshita";
   bg.appendChild(d);
 }
 
-/* HEART */
-function createHeart() {
-  const h = document.createElement("div");
-  h.className = "heart";
-  h.innerHTML = "❤️";
-  h.style.left = Math.random()*100 + "vw";
-  h.style.fontSize = (20+Math.random()*22)+"px";
-  document.body.appendChild(h);
-  setTimeout(()=>h.remove(),5000);
-}
-
-/* LOVE TEXT */
-function createLoveText() {
-  const texts = [
-    "I Promise 💖",
-    "Always Yours ♾️",
-    "Harshita ❤️",
-    "Manash 💕",
-    "Forever Together"
-  ];
-  const t = document.createElement("div");
-  t.className = "love-text";
-  t.innerText = texts[Math.floor(Math.random()*texts.length)];
-  t.style.left = Math.random()*100 + "vw";
-  t.style.fontSize = (18+Math.random()*16)+"px";
-  document.body.appendChild(t);
-  setTimeout(()=>t.remove(),6000);
+/* FLOATING LOVE */
+function floatLove(){
+  const el=document.createElement("div");
+  el.className=Math.random()>0.5?"heart":"love-text";
+  el.innerHTML=Math.random()>0.5?"❤️":"I Promise 💖";
+  el.style.left=Math.random()*100+"vw";
+  el.style.fontSize=(18+Math.random()*20)+"px";
+  document.body.appendChild(el);
+  setTimeout(()=>el.remove(),6000);
 }
 
 /* MUSIC FADE */
@@ -218,26 +221,14 @@ function fadeInMusic(a){
   a.volume=0; a.play();
   let v=0;
   const f=setInterval(()=>{
-    if(v<0.7){v+=0.02;a.volume=v;}
+    if(v<0.75){v+=0.03;a.volume=v;}
     else clearInterval(f);
-  },200);
-}
-
-/* TYPE LETTER */
-function typeLetter(text){
-  let i=0;
-  const el=document.getElementById("letter");
-  el.innerHTML="";
-  const t=setInterval(()=>{
-    el.innerHTML+=text.charAt(i);
-    i++;
-    if(i>=text.length) clearInterval(t);
-  },55);
+  },180);
 }
 
 /* FIREWORK */
 function firework(){
-  for(let i=0;i<40;i++){
+  for(let i=0;i<35;i++){
     const f=document.createElement("div");
     f.className="firework";
     f.style.left="50vw";
@@ -250,43 +241,28 @@ function firework(){
 }
 
 /* ACCEPT */
-let beat;
+let page=0, beat;
 function acceptLove(){
   const music=document.getElementById("bgMusic");
   fadeInMusic(music);
 
   document.getElementById("message").innerHTML =
-    "Promises Made 💖<br><span class='glow'>Manash & Harshita</span>";
+    "Promises Sealed 💖<br><span class='glow'>Manash & Harshita</span>";
 
   document.getElementById("ring").style.display="block";
+  document.getElementById("book").style.display="block";
 
-  typeLetter(
-`Harshita,
+  beat=setInterval(floatLove,520);
 
-On this Promise Day,
-I promise to stand by you,
-in laughter and in silence,
-in easy days and hard ones.
+  setInterval(()=>{
+    const pages=document.querySelectorAll(".page");
+    pages[page].classList.remove("active");
+    page=(page+1)%pages.length;
+    pages[page].classList.add("active");
+  },4000);
 
-I promise respect,
-patience, trust,
-and a heart that chooses you
-every single day.
-
-No matter where life takes us,
-my promises remain —
-steady, honest, and forever yours.
-
-— Manash ❤️`
-  );
-
-  beat=setInterval(()=>{
-    createHeart();
-    createLoveText();
-  },600);
-
-  setTimeout(firework,5000);
-  setTimeout(()=>document.getElementById("end").style.display="flex",9000);
+  setTimeout(firework,6000);
+  setTimeout(()=>document.getElementById("end").style.display="flex",12000);
 }
 
 /* MUSIC TOGGLE */
