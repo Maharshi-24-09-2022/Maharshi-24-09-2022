@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Happy Propose Day ❤️</title>
+<title>Happy Promise Day ❤️</title>
 
 <style>
 body {
@@ -159,17 +159,20 @@ button {
 </audio>
 
 <div class="container">
-  <h1 id="message" class="glow">Harshita ❤️<br>Will you be mine forever?</h1>
-  <button id="yesBtn" onclick="acceptLove()">YES 💖</button>
+  <h1 id="message" class="glow">
+    Harshita ❤️<br>
+    Will you accept my promises?
+  </h1>
+  <button id="yesBtn" onclick="acceptLove()">I Promise 💖</button>
   <br><br>
   <button id="musicBtn" onclick="toggleMusic()">🎵 Play / Pause</button>
-  <div id="ring" style="display:none;">💍</div>
+  <div id="ring" style="display:none;">🤞💍</div>
   <div id="letter"></div>
 </div>
 
 <div id="end">
-  <h1 class="glow">Happy Propose Day<br>Harshita ❤️</h1>
-  <p>— Yours forever, Manash</p>
+  <h1 class="glow">Happy Promise Day<br>Harshita ❤️</h1>
+  <p>— Always yours, Manash</p>
 </div>
 
 <script>
@@ -194,7 +197,13 @@ function createHeart() {
 
 /* LOVE TEXT */
 function createLoveText() {
-  const texts = ["I Love You 💖","Harshita 💕","Manash ❤️","Forever ♾️"];
+  const texts = [
+    "I Promise 💖",
+    "Always Yours ♾️",
+    "Harshita ❤️",
+    "Manash 💕",
+    "Forever Together"
+  ];
   const t = document.createElement("div");
   t.className = "love-text";
   t.innerText = texts[Math.floor(Math.random()*texts.length)];
@@ -247,24 +256,26 @@ function acceptLove(){
   fadeInMusic(music);
 
   document.getElementById("message").innerHTML =
-    "She said YES 💖<br><span class='glow'>Manash & Harshita</span>";
+    "Promises Made 💖<br><span class='glow'>Manash & Harshita</span>";
 
   document.getElementById("ring").style.display="block";
 
   typeLetter(
 `Harshita,
 
-You are my calm in chaos,
-my smile on hard days,
-and my favorite thought every night.
+On this Promise Day,
+I promise to stand by you,
+in laughter and in silence,
+in easy days and hard ones.
 
-I don’t promise perfection,
-but I promise honesty, loyalty,
-and a love that grows stronger with time.
+I promise respect,
+patience, trust,
+and a heart that chooses you
+every single day.
 
-Will you walk with me,
-not just today,
-but every tomorrow?
+No matter where life takes us,
+my promises remain —
+steady, honest, and forever yours.
 
 — Manash ❤️`
   );
